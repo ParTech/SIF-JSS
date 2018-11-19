@@ -23,6 +23,14 @@
 				"name": "Sitecore.JavaScriptServices.Media.MediaRequestHandler" 
 			  }]
 			}
+		},
+		"DisableRewrites": {
+			"Type": "SetXml",
+			"Params": {
+			  "FilePath": "[joinpath(variable('Site.PhysicalPath'), 'Web.config')]",
+			  "XPath": "//configuration/system.webServer/rewrite/rules/rule",
+			  "Attributes": [{ "enabled": "false" }]
+			}
 		}
     }
 }

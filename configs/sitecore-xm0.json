@@ -338,6 +338,14 @@
 			  "Attributes": [{ "executionTimeout": "1800" } ]
 			}
 		},
+		"SetDebugCompilaton": {
+			"Type": "SetXml",
+			"Params": {
+			  "FilePath": "[joinpath(variable('Site.PhysicalPath'), 'Web.config')]",
+			  "XPath": "//configuration/system.web/compilation",
+			  "Attributes": [{ "debug": "true" } ]
+			}
+		},
         "StartAppPool": {
             // Starts the app pool.
             "Type": "ManageAppPool",

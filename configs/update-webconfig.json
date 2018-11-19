@@ -1,0 +1,28 @@
+﻿{
+    "Parameters": {
+        "SiteName": {
+            "Type": "string",
+            "DefaultValue": "SitecoreXM1CM",
+            "Description": "The name of the site to be deployed."
+        }
+    },
+    "Variables": {
+        "Site.PhysicalPath": "[joinpath(environment('SystemDrive'), 'inetpub', 'wwwroot', parameter('SiteName'))]"
+    },
+    "Tasks": {
+		"AddHandler": {
+			"Type": "SetXml",
+			"Params": {
+			  "FilePath": "[joinpath(variable('Site.PhysicalPath'), 'Web.config')]",
+			  "XPath": "//configuration/system.webServer/handlers",
+			  "Element": "add",
+			  "Attributes": [{ 
+			    "verb": "*",
+				"path": "sitecorejss_media.ashx",
+				"type": "Sitecore.JavaScriptServices.Media.MediaRequestHandler, Sitecore.JavaScriptServices.Media",
+				"name": "Sitecore.JavaScriptServices.Media.MediaRequestHandler" 
+			  }]
+			}
+		}
+    }
+}

@@ -224,6 +224,19 @@
                 ]
             },
             "Skip": "[not(parameter('SSLCert'))]"
+		},
+		"CreateUnsecureBinding": {
+            // Configures the site bindings for the website.
+            "Type": "WebBinding",
+            "Params": {
+                "SiteName": "[parameter('SiteName')]",
+				"Add": [{
+					"HostHeader": "[parameter('SiteName')]",
+					"Protocol": "http",
+					 "SSLFlags": 0
+				}],
+                "Remove": [ { "Port": "80", "IPAddress": "*" } ]
+            }
         },
         "CreateHostHeader": {
             // Sets a hostheader for the website.
